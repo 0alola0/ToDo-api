@@ -1,0 +1,27 @@
+openapi: 3.0.0
+
+info:
+  title: ToDo-app
+  description: application to manage tasks
+  version: 0.1.9
+
+servers:
+  - url: http://localhost:3000/api
+    description: production server
+  - url: http://localhost:3000/api
+    description: local server
+paths:
+  /todo/{id}:
+    get:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+            example: 1
+          required: true
+      tags:
+        - todo
+      responses:
+        "200":
+          description: Successfully

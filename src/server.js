@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 import { userRouter } from './routes/userRoutes.js'
 import { todoRouter } from './routes/todoRoute.js'
 import dotenv from "dotenv";
+import swaggerMiddleware from './middlewares/swagger-middleware.js'
 
 dotenv.config()
 
@@ -11,9 +12,9 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-app.use("/auth", userRouter)
-app.use("/todo", todoRouter)
-
+app.use("/api/auth", userRouter)
+app.use("/api/todo", todoRouter)
+app.use("/", ...swaggerMiddleware());
 
 
 
@@ -26,8 +27,7 @@ mongoose.connect(
 )
 
 
-app.listen(3000, () => {
-    console.log("listening to 3000")
-})
+app.listen(3000)
+
 
 
